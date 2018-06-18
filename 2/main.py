@@ -4,16 +4,14 @@ import gc
 import random
 import sys
 
-import numpy as np
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
-# 10**8, 10**10, 10**6
 n = 10 ** int(sys.argv[1])
-per_worker = n/size
+per_worker = n
 o = 0
 
 gc.collect()
