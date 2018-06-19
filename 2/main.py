@@ -1,6 +1,5 @@
 #!/usr/bin/env python2
 
-import gc
 import random
 import sys
 
@@ -11,10 +10,9 @@ rank = comm.Get_rank()
 size = comm.Get_size()
 
 n = 10 ** int(sys.argv[1])
-per_worker = n
-o = 0
+per_worker = n if "SCALABLE" in sys.argv else (n/size)
 
-gc.collect()
+o = 0
 
 comm.Barrier()
 begin_time = MPI.Wtime()
@@ -27,4 +25,4 @@ sum = comm.reduce(o, op=MPI.SUM, root=0)
 end_time = MPI.Wtime()
 
 if rank == 0:
-    print end_time-begin_time
+    print "{0:.10f}".format(end_time-begin_time)
