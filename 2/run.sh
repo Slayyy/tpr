@@ -2,7 +2,7 @@
 
 #SBATCH -N 1
 #SBATCH --cpus-per-task=12
-#SBATCH --time=24:00:00 
+#SBATCH --time=48:00:00 
 #SBATCH -p plgrid
 #SBATCH --output="output.out"
 #SBATCH --error="error.err"
